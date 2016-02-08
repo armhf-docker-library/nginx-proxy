@@ -8,12 +8,17 @@ build:
 
 publish:
   docker:
+    image: armhfplugins/drone-docker:docker-caching
     context: upstream
     file: upstream/Dockerfile
     username: $$DOCKER_USER
     email: $$DOCKER_EMAIL
     password: $$DOCKER_PASSWORD
     repo: armhfbuild/nginx-proxy
+
+cache:
+  mount:
+    - /drone/docker
 
 notify:
   slack:
